@@ -1,6 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using StoreManaging.Web.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<ApplicationDbContext>(options => 
+options.UseSqlServer(builder.Configuration.GetConnectionString("StoreManager")));
 
 var app = builder.Build();
 
@@ -19,6 +25,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Categories}/{action=Index}/{id?}");
 
 app.Run();

@@ -1,4 +1,4 @@
-﻿namespace StoreManaging.Web.Models
+﻿namespace StoreManaging.Web.Models.Entities
 {
     public class Category
     {
