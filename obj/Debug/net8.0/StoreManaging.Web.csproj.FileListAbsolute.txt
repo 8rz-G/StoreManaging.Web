@@ -134,3 +134,4 @@ C:\Users\Brzezin\source\repos\StoreManaging.Web\StoreManaging.Web\obj\Debug\net8
 C:\Users\Brzezin\source\repos\StoreManaging.Web\StoreManaging.Web\obj\Debug\net8.0\StoreManaging.Web.pdb
 C:\Users\Brzezin\source\repos\StoreManaging.Web\StoreManaging.Web\obj\Debug\net8.0\StoreManaging.Web.genruntimeconfig.cache
 C:\Users\Brzezin\source\repos\StoreManaging.Web\StoreManaging.Web\obj\Debug\net8.0\ref\StoreManaging.Web.dll
+C:\Users\Brzezin\source\repos\StoreManaging.Web\StoreManaging.Web\obj\Debug\net8.0\StoreManaging.Web.sourcelink.json
