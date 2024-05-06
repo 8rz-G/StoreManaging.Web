@@ -15,6 +15,8 @@ namespace StoreManaging.Web.Controllers
             this.dbContext = dbContext;
         }
 
+       
+
         [HttpGet]
 		public async Task<IActionResult> Index()
         {
@@ -80,9 +82,7 @@ namespace StoreManaging.Web.Controllers
                 await dbContext.SaveChangesAsync();
             }
 
-            return RedirectToAction("Index", "Categories");
+            return RedirectToAction("Index");
         }
-
-
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace StoreManaging.Web.Models
+﻿using StoreManaging.Web.Models.Entities;
+
+namespace StoreManaging.Web.Models
 {
     public class AddProductViewModel
     {
