@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using StoreManaging.Web.Data;
 using StoreManaging.Web.Models;
 using StoreManaging.Web.Models.Entities;
@@ -13,7 +14,7 @@ namespace StoreManaging.Web.Controllers
         {
             this.dbContext = dbContext;
         }
-		
+
         [HttpGet]
 		public async Task<IActionResult> Index()
         {
@@ -22,10 +23,31 @@ namespace StoreManaging.Web.Controllers
             return View(categories);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Edit(int id)
+		[HttpGet]
+		public IActionResult Add()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Add(AddCategoryViewModel viewModel)
+		{
+			var category = new Category
+			{
+				Name = viewModel.Name,
+				Description = viewModel.Description,
+			};
+
+			await dbContext.AddAsync(category);
+			await dbContext.SaveChangesAsync();
+
+			return RedirectToAction("Index");
+		}
+
+		[HttpGet]
+        public async Task<IActionResult> Edit(int Id)
         {
-            var category = await dbContext.Categories.FindAsync(id);
+            var category = await dbContext.Categories.FindAsync(Id);
             
             return View(category);
         }
@@ -44,7 +66,21 @@ namespace StoreManaging.Web.Controllers
 
             await dbContext.SaveChangesAsync();
 
-            return View("Index", "Categories");
+			return RedirectToAction("Index");
+		}
+        [HttpPost]
+        public async Task<IActionResult> Delete(Category viewModel)
+        {
+            var category = await dbContext.Categories.AsNoTracking()
+                .FirstOrDefaultAsync(x => x.CategoryId == viewModel.CategoryId);
+            
+            if (category is not null) 
+            {
+                dbContext.Categories.Remove(category);
+                await dbContext.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Index", "Categories");
         }
 
 
