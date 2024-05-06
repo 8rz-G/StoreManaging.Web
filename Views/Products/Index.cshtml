@@ -1,0 +1,29 @@
+﻿@model List<StoreManaging.Web.Models.Entities.Products>
+
+<h3>Products</h3>
+
+<table class="table">
+    <thead>
+    <th>Code</th>
+    <th>Name</th>
+    <th>Category</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductCode</td>
+                <td>@product.Name</td>
+                <td>@product.Category</td>
+                <td>@product.Quantity</td>
+                <td>@product.Price</td>
+                <td>
+                    <a class="btn btn-dark" asp-controller="Products" asp-action="Edit" asp-route-id="@product.ProductCode">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-dark" asp-controller="Products" asp-action="Add">Add new category</a>
