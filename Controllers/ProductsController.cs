@@ -49,8 +49,8 @@ namespace StoreManaging.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int Id)
         {
-            var product = await dbContext.Products.FindAsync(Id); 
-            
+            var product = await dbContext.Products.FindAsync(Id);
+
             return View(product);
         }
 
