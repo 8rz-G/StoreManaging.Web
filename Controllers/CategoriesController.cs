@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using StoreManaging.Web.Data;
@@ -9,19 +10,23 @@ namespace StoreManaging.Web.Controllers
 {
     public class CategoriesController : Controller
     {
+        
         private readonly ApplicationDbContext dbContext;
         public CategoriesController(ApplicationDbContext dbContext) 
         {
             this.dbContext = dbContext;
         }
-
        
 
         [HttpGet]
 		public async Task<IActionResult> Index()
         {
             var categories = await dbContext.Categories.ToListAsync();
+            //ViewBag.Categories = categories.ToList();
 
+            List<Category> categoriesList = categories;
+            
+            ViewBag.Categories = new SelectList(categoriesList, "CategoryId", "Name");
             return View(categories);
         }
 

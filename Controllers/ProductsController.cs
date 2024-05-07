@@ -4,6 +4,8 @@ using Microsoft.Identity.Client;
 using StoreManaging.Web.Data;
 using StoreManaging.Web.Models;
 using StoreManaging.Web.Models.Entities;
+using StoreManaging.Web.Controllers;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace StoreManaging.Web.Controllers
 {
@@ -20,7 +22,7 @@ namespace StoreManaging.Web.Controllers
         {
             var products = await dbContext.Products.ToListAsync();
 
-            return View(products);
+			return View(products);
         }
 
         [HttpGet]
