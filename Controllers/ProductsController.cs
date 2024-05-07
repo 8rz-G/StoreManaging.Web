@@ -22,12 +22,22 @@ namespace StoreManaging.Web.Controllers
         {
             var products = await dbContext.Products.ToListAsync();
 
+            var categories = dbContext.Categories.ToList();
+
+            categories.Add(new Category() { 
+                CategoryId = 0, 
+                Name = "--Select Category--" 
+            });
+
+            ViewBag.Categories = new SelectList(categories, "CategoryId", "Name");
+
 			return View(products);
         }
 
         [HttpGet]
         public IActionResult Add()
         {
+            ViewData["CategoryId"] = new SelectList(dbContext.Categories, "CategoryId", "Name");
             return View();
         }
 
