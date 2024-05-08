@@ -13,11 +13,11 @@
         @foreach (var category in Model)
         {
             <tr>
-                <td>@category.CategoryId</td>
+                <td>@category.Id</td>
                 <td>@category.Name</td>
                 <td>@category.Description</td>
                 <td>
-                    <a class="btn btn-dark" asp-controller="Categories" asp-action="Edit" asp-route-id="@category.CategoryId">Edit</a>
+                    <a class="btn btn-dark" asp-controller="Categories" asp-action="Edit" asp-route-id="@category.Id">Edit</a>
                 </td>
             </tr>
         }

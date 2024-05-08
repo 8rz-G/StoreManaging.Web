@@ -8,10 +8,9 @@ namespace StoreManaging.Web.Models.Entities
 	public class Products
 	{
 		[Key]
-		public int ProductCode { get; set; }
+		public int Id { get; set; }
 		public string Name { get; set; }
-		[ForeignKey("CategoryId")]
-		[ValidateNever]
+		[ForeignKey("Id")]
 		public int Category { get; set; }
 		public int Quantity { get; set; }
 		public decimal Price { get; set; }

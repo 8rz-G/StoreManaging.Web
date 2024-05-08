@@ -11,8 +11,8 @@ using StoreManaging.Web.Data;
 namespace StoreManaging.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240506143316_Final Migration")]
-    partial class FinalMigration
+    [Migration("20240508151146_Latest-Migration")]
+    partial class LatestMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,11 +26,11 @@ namespace StoreManaging.Web.Migrations
 
             modelBuilder.Entity("StoreManaging.Web.Models.Entities.Category", b =>
                 {
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -40,18 +40,18 @@ namespace StoreManaging.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CategoryId");
+                    b.HasKey("Id");
 
                     b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("StoreManaging.Web.Models.Entities.Products", b =>
                 {
-                    b.Property<int>("ProductCode")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductCode"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Category")
                         .HasColumnType("int");
@@ -66,7 +66,7 @@ namespace StoreManaging.Web.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductCode");
+                    b.HasKey("Id");
 
                     b.ToTable("Products");
                 });

@@ -26,7 +26,7 @@ namespace StoreManaging.Web.Controllers
 
             List<Category> categoriesList = categories;
             
-            ViewBag.Categories = new SelectList(categoriesList, "CategoryId", "Name");
+            ViewBag.Categories = new SelectList(categoriesList, "Id");
             return View(categories);
         }
 
@@ -62,11 +62,11 @@ namespace StoreManaging.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Category viewModel)
         {
-            var category = await dbContext.Categories.FindAsync(viewModel.CategoryId);
+            var category = await dbContext.Categories.FindAsync(viewModel.Id);
 
             if (category is not null) 
             { 
-                category.CategoryId = viewModel.CategoryId;
+                category.Id = viewModel.Id;
                 category.Name = viewModel.Name;
                 category.Description = viewModel.Description;
             }
@@ -79,7 +79,7 @@ namespace StoreManaging.Web.Controllers
         public async Task<IActionResult> Delete(Category viewModel)
         {
             var category = await dbContext.Categories.AsNoTracking()
-                .FirstOrDefaultAsync(x => x.CategoryId == viewModel.CategoryId);
+                .FirstOrDefaultAsync(x => x.Id == viewModel.Id);
             
             if (category is not null) 
             {

@@ -22,22 +22,14 @@ namespace StoreManaging.Web.Controllers
         {
             var products = await dbContext.Products.ToListAsync();
 
-            var categories = dbContext.Categories.ToList();
-
-            categories.Add(new Category() { 
-                CategoryId = 0, 
-                Name = "--Select Category--" 
-            });
-
-            ViewBag.Categories = new SelectList(categories, "CategoryId", "Name");
-
 			return View(products);
         }
 
         [HttpGet]
         public IActionResult Add()
         {
-            ViewData["CategoryId"] = new SelectList(dbContext.Categories, "CategoryId", "Name");
+            ViewBag.Categories = new SelectList(dbContext.Categories.ToList(), "Id", "Name");
+
             return View();
         }
 
@@ -63,17 +55,19 @@ namespace StoreManaging.Web.Controllers
         {
             var product = await dbContext.Products.FindAsync(Id);
 
-            return View(product);
+			ViewBag.Categories = new SelectList(dbContext.Categories.ToList(), "Id", "Name");
+
+			return View(product);
         }
 
         [HttpPost]
         public async Task<IActionResult> Edit(Products viewModel)
         {
-            var product = await dbContext.Products.FindAsync(viewModel.ProductCode);
+            var product = await dbContext.Products.FindAsync(viewModel.Id);
 
             if (product is not null)
             {
-                product.ProductCode = viewModel.ProductCode;
+                product.Id = viewModel.Id;
                 product.Name = viewModel.Name;
                 product.Category = viewModel.Category;
                 product.Quantity = viewModel.Quantity;
@@ -89,7 +83,7 @@ namespace StoreManaging.Web.Controllers
         public async Task<IActionResult> Delete(Products viewModel)
         {
             var product = await dbContext.Products.AsNoTracking()
-                .FirstOrDefaultAsync(x => x.ProductCode == viewModel.ProductCode);
+                .FirstOrDefaultAsync(x => x.Id == viewModel.Id);
 
             if (product is not null) 
             { 

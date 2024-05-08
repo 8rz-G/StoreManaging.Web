@@ -8,8 +8,8 @@ else
 {
 	<form method="post">
 		<div class="mt-3">
-			<label class="form-label">ProductCode</label>
-			<input type="int" class="form-control" asp-for="ProductCode" readonly />
+			<label class="form-label">Id</label>
+			<input type="int" class="form-control" asp-for="Id" readonly />
 		</div>
 		<div class="mt-3">
 			<label class="form-label">Name</label>
@@ -17,7 +17,7 @@ else
 		</div>
 		<div class="mt-3">
 			<label class="form-label">Category</label>
-			<input type="text" class="form-control" asp-for="Category" />
+			@Html.DropDownList("Category", ViewBag.Categories, "--Select Category--", new { @class = "form-control" })
 		</div>
 		<div class="mt-3">
 			<label class="form-label">Quantity on stock</label>

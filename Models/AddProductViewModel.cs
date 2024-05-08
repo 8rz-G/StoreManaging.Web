@@ -1,4 +1,5 @@
-﻿using StoreManaging.Web.Models.Entities;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using StoreManaging.Web.Models.Entities;
 
 namespace StoreManaging.Web.Models
 {
