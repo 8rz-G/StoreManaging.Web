@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StoreManaging.Web.Models.Entities
 {
-	public class Products
+	public class Product
 	{
 		[Key]
 		public int Id { get; set; }

@@ -22,7 +22,6 @@ namespace StoreManaging.Web.Controllers
 		public async Task<IActionResult> Index()
         {
             var categories = await dbContext.Categories.ToListAsync();
-            //ViewBag.Categories = categories.ToList();
 
             List<Category> categoriesList = categories;
             

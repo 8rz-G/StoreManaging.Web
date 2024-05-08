@@ -36,7 +36,7 @@ namespace StoreManaging.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(AddProductViewModel viewModel)
         {
-            var product = new Products
+            var product = new Product
             {
                 Name = viewModel.Name,
                 Category = viewModel.Category,
@@ -61,7 +61,7 @@ namespace StoreManaging.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(Products viewModel)
+        public async Task<IActionResult> Edit(Product viewModel)
         {
             var product = await dbContext.Products.FindAsync(viewModel.Id);
 
@@ -80,7 +80,7 @@ namespace StoreManaging.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(Products viewModel)
+        public async Task<IActionResult> Delete(Product viewModel)
         {
             var product = await dbContext.Products.AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == viewModel.Id);
